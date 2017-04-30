@@ -14,7 +14,7 @@ Servo extraDevice2;
 
 int rsl = 2;
 int ledState = LOW;
-int flashrate = 200;
+int flashrate = 2000;
 unsigned long previousMillis = 0;
 
 
@@ -53,9 +53,6 @@ void setup()
   data.axis3 = 90;
   data.axis4 = 90;
   data.switches = 0;
-
-  int flashrate = 2000;
-
   delay(750);
 }
 
@@ -65,7 +62,7 @@ unsigned long lastRecvTime = 0;
 
 void loop()
 {
-  while ( radio.available() ) {
+  if ( radio.available() ) {
     radio.read(&data, sizeof(MyData));
     lastRecvTime = millis();
   }
@@ -76,7 +73,7 @@ void loop()
     data.axis2 = 127;
     data.axis3 = 127;
     data.axis4 = 127;
-    int flashrate = 1000;
+    flashrate = 2000;
   }
 
   // manual control
@@ -90,7 +87,7 @@ void loop()
     t = 90;
     x = 90;
     y = 90;
-    int flashrate = 200;
+    flashrate = 200;
   }
 
   steeringServo.write( s );
