@@ -36,7 +36,7 @@ void setup()
   radio.begin();
   radio.setAutoAck(false);
   radio.setDataRate(RF24_250KBPS);
-  //radio.setPALevel(RF24_PA_MIN);
+  radio.setPALevel(RF24_PA_MAX);
 
   radio.openReadingPipe(1,pipeIn);
   radio.startListening();
